@@ -66,7 +66,7 @@ const FeaturesSection = React.forwardRef((props, ref) => {
   };
 
   return (
-    <section ref={combinedRef} className="py-20 bg-white dark:bg-slate-900 overflow-hidden transition-colors duration-300">
+    <section ref={combinedRef} className="py-20 bg-white/80 dark:bg-slate-900/50 backdrop-blur-0 overflow-hidden transition-colors duration-300">
       <div className="container mx-auto px-6 text-center">
         <ScrollFloat as="h3" containerClassName="text-4xl font-bold mb-4 text-slate-800 dark:text-slate-200">
           A new way to find support

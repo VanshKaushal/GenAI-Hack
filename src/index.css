@@ -13,6 +13,8 @@
 /* Font Family */
 body {
   font-family: 'Roboto Flex', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+
+  background-color: transparent !important;
 }
 
 /* Custom Animations */
@@ -49,4 +51,8 @@ body {
 
 .section-animate {
   opacity: 0;
+}
+
+#root {
+  background-color: transparent !important;
 }

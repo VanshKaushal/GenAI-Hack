@@ -1,7 +1,8 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 
 // Import Components
-import ParticleBackground from './components/ParticleBackground';
+import PixelBlast from './components/PixelBlast'; // We will use this directly
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
 import FeaturesSection from './components/FeaturesSection';
@@ -12,19 +13,15 @@ import Modal from './components/Modal';
 import { ThemeProvider } from './contexts/ThemeContext';
 
 export default function App() {
-  const [activeModal, setActiveModal] = useState(null); // 'signIn', 'signUp', or null
-
-  // Refs for smooth scrolling
+  const [activeModal, setActiveModal] = useState(null);
   const featuresRef = useRef(null);
   const aboutRef = useRef(null);
   const faqRef = useRef(null);
 
-  // Scroll function
   const scrollToSection = (ref) => {
     ref.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  // Scroll animations
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -36,10 +33,8 @@ export default function App() {
       },
       { threshold: 0.1 }
     );
-
     const sections = document.querySelectorAll('.section-animate');
     sections.forEach((section) => observer.observe(section));
-
     return () => sections.forEach((section) => observer.unobserve(section));
   }, []);
 
@@ -51,10 +46,27 @@ export default function App() {
 
   return (
     <ThemeProvider>
-      <div className="bg-slate-50 dark:bg-slate-900 font-sans text-slate-800 dark:text-slate-200 antialiased transition-colors duration-300">
-        <ParticleBackground />
+      {/* This main div should NOT have a background color. */}
+      <div className="bg-transparent font-sans text-slate-800 dark:text-slate-200 antialiased transition-colors duration-300">
+        
+        {/* Layer 1: The Background */}
+        {/* This div is fixed to the viewport and sits behind everything. */}
+        <div className="fixed top-0 left-0 w-full h-full -z-10 bg-gray-900">
+          <PixelBlast
+            variant="circle"
+            color="#B19EEF"
+            pixelSize={4}       // Bigger pixels
+            patternDensity={1.5}  // Denser pattern
+            liquid={true}
+            liquidStrength={0.15}
+            liquidRadius={1.2}
+            rippleSpeed={0.4}
+          />
+        </div>
 
-        <div className="relative z-10">
+        {/* Layer 2: Your Content */}
+        {/* This div sits on top of the background. */}
+        <div className="relative z-0">
           <Header
             navLinks={navLinks}
             scrollToSection={scrollToSection}
@@ -75,6 +87,14 @@ export default function App() {
     </ThemeProvider>
   );
 }
+
+
+
+
+
+
+
+
 
 
 

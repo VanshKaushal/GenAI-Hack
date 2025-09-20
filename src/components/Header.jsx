@@ -122,7 +122,7 @@ const Header = ({
 
               {/* Text is restored, logo image is removed */}
               <div className="absolute left-1/2 -translate-x-1/2">
-                <h1 className="text-3xl font-bold">mAItri</h1>
+                <h1 className="text-3xl font-bold">Peace Pulse</h1>
               </div>
               
               <div className="flex items-center space-x-2">

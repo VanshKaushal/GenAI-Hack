@@ -21,8 +21,8 @@ const HeroSection = () => {
       {/* Curved text headline */}
       <div className="w-full max-w-6xl -mt-16 mb-4">
         <CurvedLoop
-          marqueeText="Find your calm with mAItri"
-          highlightText="mAItri"
+          marqueeText="Find your calm with PeacePulse"
+          highlightText="PeacePulse"
           highlightClassName="text-sky-400"
           speed={1.5}
           className="text-white font-extrabold text-5xl md:text-7xl"
@@ -56,7 +56,7 @@ const HeroSection = () => {
       {/* --- Start Journey Button with Glare Effect --- */}
       <div className="w-full flex justify-center mt-16">
         <GlareHover
-          background="rgba(2, 132, 199, 0.8)" // Explicitly set the background color
+          background="rgba(2, 132, 199, 1)" // Explicitly set the background color
           glareColor="#a7ddf5"
           glareOpacity={0.9}
           glareSize={400}
@@ -64,6 +64,7 @@ const HeroSection = () => {
           className="text-white rounded-full text-lg font-sans transition-all duration-300 hover:bg-sky-600"
         >
           <a 
+          // link to the project page
             href="#" 
             className="block px-8 py-4"
           >
@@ -77,3 +78,15 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
+
+
+
+
+
+
+
+
+
+
+
+

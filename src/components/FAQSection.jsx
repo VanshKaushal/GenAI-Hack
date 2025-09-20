@@ -85,7 +85,7 @@ const FAQSection = React.forwardRef((props, ref) => {
 
   return (
     <>
-      <section ref={ref} className="py-20 bg-white dark:bg-slate-900 section-animate transition-colors duration-300">
+      <section ref={ref} className="py-20 bg-white/80 dark:bg-slate-900/50 backdrop-blur-0 section-animate transition-colors duration-300">
         <div ref={containerRef} className="container mx-auto px-6">
           <div className="text-center mb-16">
             <motion.h3 
@@ -222,3 +222,13 @@ const FAQSection = React.forwardRef((props, ref) => {
 });
 
 export default FAQSection;
+
+
+
+
+
+
+
+
+
+

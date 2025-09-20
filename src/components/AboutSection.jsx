@@ -71,7 +71,7 @@ const AboutSection = React.forwardRef((props, ref) => {
   return (
     <motion.section 
       ref={ref} 
-      className="py-20 bg-slate-50 dark:bg-slate-800 section-animate transition-colors duration-300 relative overflow-hidden"
+      className="py-20 bg-slate-50/80 dark:bg-slate-800/50 backdrop-blur-0 section-animate transition-colors duration-300 relative overflow-hidden"
       style={{ y, opacity }}
     >
       <div ref={containerRef} className="container mx-auto px-6">
@@ -137,4 +137,18 @@ const AboutSection = React.forwardRef((props, ref) => {
 });
 
 export default AboutSection;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

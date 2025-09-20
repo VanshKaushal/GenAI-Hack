@@ -7,28 +7,7 @@ const ParticleBackground = () => {
     const ctx = canvas.getContext('2d');
     let particlesArray;
 
-    function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-    resizeCanvas();
-
-    let mouse = { x: null, y: null, radius: (canvas.height/120) * (canvas.width/120) };
-
-    const handleMouseMove = (event) => {
-        mouse.x = event.x;
-        mouse.y = event.y;
-    };
-    
-    const handleMouseOut = () => {
-        mouse.x = undefined;
-        mouse.y = undefined;
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('resize', resizeCanvas);
-    window.addEventListener('mouseout', handleMouseOut);
-
+    // The Particle class is defined here, at the top, to fix the initialization error.
     class Particle {
         constructor(x, y, directionX, directionY, size, color) {
             this.x = x;
@@ -63,6 +42,28 @@ const ParticleBackground = () => {
         }
     }
 
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        init(); 
+    }
+
+    let mouse = { x: null, y: null, radius: (canvas.height/120) * (canvas.width/120) };
+
+    const handleMouseMove = (event) => {
+        mouse.x = event.x;
+        mouse.y = event.y;
+    };
+    
+    const handleMouseOut = () => {
+        mouse.x = undefined;
+        mouse.y = undefined;
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('mouseout', handleMouseOut);
+
     function init() {
         particlesArray = [];
         let numberOfParticles = (canvas.height * canvas.width) / 9000;
@@ -72,8 +73,7 @@ const ParticleBackground = () => {
             let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
             let directionX = (Math.random() * .4) - 0.2;
             let directionY = (Math.random() * .4) - 0.2;
-            let color = 'rgba(162, 200, 201, 0.5)';
-            particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+            particlesArray.push(new Particle(x, y, directionX, directionY, size, 'rgba(162, 200, 201, 0.5)'));
         }
     }
 
@@ -100,13 +100,15 @@ const ParticleBackground = () => {
     function animate() {
         animationFrameId = requestAnimationFrame(animate);
         ctx.clearRect(0, 0, innerWidth, innerHeight);
-        for (let i = 0; i < particlesArray.length; i++) {
-            particlesArray[i].update();
+        if (particlesArray) {
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+            }
+            connect();
         }
-        connect();
     }
 
-    init();
+    resizeCanvas();
     animate();
 
     return () => {
@@ -117,16 +119,8 @@ const ParticleBackground = () => {
     };
   }, []);
 
-//   return <canvas id="neuron-canvas" className="fixed top-0 left-0 w-full h-full z-0"></canvas>;
-// ...existing code...
-return (
-  <canvas
-    id="neuron-canvas"
-    className="fixed top-0 left-0 w-full h-full z-0 bg-gray-900"
-    // If not using Tailwind, use style={{ background: '#1a1a1a' }}
-  ></canvas>
-);
-// ...existing code...
+  return <canvas id="neuron-canvas" className="absolute top-0 left-0 w-full h-full"></canvas>;
 };
 
 export default ParticleBackground;
+
